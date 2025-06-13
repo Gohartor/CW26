@@ -11,12 +11,12 @@ import java.util.Optional;
 import java.util.Set;
 
 @Repository
+@RequiredArgsConstructor
+
 public class ContactRepositoryImpl implements ContactRepository {
+
    private final EntityManager entityManager;
 
-    public ContactRepositoryImpl(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
 
     @Override
     public Contact create(Contact contact) {
