@@ -1,15 +1,12 @@
 package ir.maktab.contacts.controller;
 
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 import ir.maktab.contacts.entity.Contact;
 import ir.maktab.contacts.service.ContactService;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -25,7 +22,7 @@ public class ContactController {
     }
 
     @PostMapping("/by-param")
-    @ResponseBody
+//    @ResponseBody
     public ResponseEntity<Contact> addOrEdit(@RequestBody Contact contact) {
         System.out.println(contact);
         return ResponseEntity.ok(contactService.addOrEdit(contact));
