@@ -11,9 +11,13 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class ContactService {
-    private final ContactRepository contactRepository;
+    private /*final*/ ContactRepository contactRepository;
+
+    public ContactService(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
 
 
    public Contact addOrEdit(Contact contact){
@@ -23,6 +27,8 @@ public class ContactService {
     public void deleteById(Long id){
         contactRepository.removeById(id);
     }
+
+
     public Contact findById(Long id){
         Optional<Contact> optionalContact = contactRepository.findById(id);
         if (optionalContact.isPresent())
