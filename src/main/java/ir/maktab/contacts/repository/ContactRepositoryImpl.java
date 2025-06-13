@@ -2,6 +2,7 @@ package ir.maktab.contacts.repository;
 
 import ir.maktab.contacts.entity.Contact;
 import jakarta.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
@@ -11,7 +12,7 @@ import java.util.Set;
 
 @Repository
 public class ContactRepositoryImpl implements ContactRepository {
-   private EntityManager entityManager;
+   private final EntityManager entityManager;
 
     public ContactRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
