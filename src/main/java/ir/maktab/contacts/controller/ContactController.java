@@ -27,6 +27,7 @@ public class ContactController {
     @PostMapping("/by-param")
     @ResponseBody
     public ResponseEntity<Contact> addOrEdit(@RequestBody Contact contact) {
+        System.out.println(contact);
         return ResponseEntity.ok(contactService.addOrEdit(contact));
     }
 
