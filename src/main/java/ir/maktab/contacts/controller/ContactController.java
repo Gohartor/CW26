@@ -38,6 +38,11 @@ public class ContactController {
         return ResponseEntity.ok(contactService.editContact(contact));
     }
 
+
+    //@PathVariable -> single
+    //@RequestParam -> list, single
+    //@RequestBody -> instance, list, single
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteContact(@PathVariable("id") Long id) {
         contactService.deleteById(id);
