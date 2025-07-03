@@ -2,6 +2,7 @@ package ir.maktab.contacts.controller;
 
 
 
+import ir.maktab.contacts.dto.NewContactDTO;
 import ir.maktab.contacts.entity.Contact;
 import ir.maktab.contacts.service.ContactService;
 
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/contact")
 //@Controller
 //@RequiredArgsConstructor
 public class ContactController {
@@ -23,7 +24,7 @@ public class ContactController {
 
     @PostMapping("/by-param")
 //    @ResponseBody
-    public ResponseEntity<Contact> addOrEdit(@RequestBody Contact contact) {
+    public ResponseEntity<Contact> addOrEdit(@RequestBody NewContactDTO contact) {
         System.out.println(contact);
         return ResponseEntity.ok(contactService.addOrEdit(contact));
     }

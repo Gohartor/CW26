@@ -2,11 +2,13 @@ package ir.maktab.contacts.service;
 
 
 
+import ir.maktab.contacts.dto.NewContactDTO;
 import ir.maktab.contacts.entity.Contact;
 import ir.maktab.contacts.repository.ContactRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,12 +22,15 @@ public class ContactService {
     }
 
 
-   public Contact addOrEdit(Contact contact){
-     return contactRepository.create(contact);
+   public Contact addOrEdit(NewContactDTO contact){
+        Contact newContact = new Contact();
+        newContact.setName(contact.getName());
+        newContact.setNumber(contact.getNumber());
+     return contactRepository.save(newContact);
     }
 
     public void deleteById(Long id){
-        contactRepository.removeById(id);
+        contactRepository.deleteById(id);
     }
 
 
@@ -36,8 +41,8 @@ public class ContactService {
         throw new RuntimeException();
     }
 
-    public Set<Contact> findAll(){
-        Set<Contact> all = contactRepository.findAll();
+    public List<Contact> findAll(){
+        List<Contact> all = contactRepository.findAll();
         if (all.isEmpty())
             throw new RuntimeException();
         return all;
