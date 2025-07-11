@@ -1,6 +1,5 @@
 package ir.maktab.contacts.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,11 +23,11 @@ public class WebConfigSecurity {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index.html", "/v3/api-docs/**", "/swagger-ui/**", "/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/users/register").permitAll()
+                        .requestMatchers("/api/contact/**").permitAll() // Allow all contact endpoints for now
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }
-
 }
