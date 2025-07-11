@@ -1,10 +1,7 @@
 package ir.maktab.contacts.entity;
 
 import ir.maktab.contacts.entity.Authority;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +11,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 
+@Entity
 public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     public static final String TABLE_NAME = "tbl_role";
 
