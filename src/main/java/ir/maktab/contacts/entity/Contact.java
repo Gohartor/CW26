@@ -1,9 +1,6 @@
 package ir.maktab.contacts.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Contact {
@@ -12,6 +9,9 @@ public class Contact {
     private Long id;
     private String name;
     private String number;
+
+    @ManyToOne
+    private User user;
 
     public Contact() {
     }

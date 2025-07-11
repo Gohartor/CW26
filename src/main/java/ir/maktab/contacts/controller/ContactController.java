@@ -8,6 +8,7 @@ import ir.maktab.contacts.entity.Contact;
 import ir.maktab.contacts.service.ContactService;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,14 +52,17 @@ public class ContactController {
 
 
     @GetMapping("/show-all-contatcs")
+    @PreAuthorize("hasAuthority(T(ir.maktab.contacts.controller.ContactController).ADMIN)")
     public ResponseEntity<List<Contact>> showAllContacts() {
         return ResponseEntity.ok(contactService.findAll());
     }
+
 
     @GetMapping("/show-contact/{id}")
     public ResponseEntity<Contact> showContact(@PathVariable("id") Long id) {
         return ResponseEntity.ok(contactService.findById(id));
     }
+
 
 
 //    @GetMapping("/{id}")
