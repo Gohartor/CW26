@@ -6,6 +6,9 @@ import ir.maktab.contacts.dto.NewContactDTO;
 import ir.maktab.contacts.dto.UpdateContactDTO;
 import ir.maktab.contacts.entity.Contact;
 import ir.maktab.contacts.repository.ContactRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,4 +61,6 @@ public class ContactService {
             throw new RuntimeException();
         return all;
     }
+
+
 }
