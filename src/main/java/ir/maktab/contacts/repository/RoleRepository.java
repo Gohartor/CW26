@@ -1,0 +1,9 @@
+package ir.maktab.contacts.repository;
+
+import ir.maktab.contacts.entity.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoleRepository extends JpaRepository<Role, Long> {
+
+
+}

@@ -12,11 +12,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.Set;
 
 
 @Service
 public class UserService implements UserDetailsService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -39,6 +41,11 @@ public class UserService implements UserDetailsService {
     public User findByUserName(String username){
         return userRepository.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException(username));
     }
+
+    Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
