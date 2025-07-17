@@ -5,10 +5,12 @@ package ir.maktab.contacts.controller;
 import ir.maktab.contacts.dto.NewContactDTO;
 import ir.maktab.contacts.dto.UpdateContactDTO;
 import ir.maktab.contacts.entity.Contact;
+import ir.maktab.contacts.entity.User;
 import ir.maktab.contacts.service.ContactService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,8 +54,8 @@ public class ContactController {
 
 
     @GetMapping("/show-all-contatcs")
-    @PreAuthorize("hasAuthority(T(ir.maktab.contacts.controller.ContactController).ADMIN)")
-    public ResponseEntity<List<Contact>> showAllContacts() {
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<Contact>> showAllContacts(@AuthenticationPrincipal User user) {
         return ResponseEntity.ok(contactService.findAll());
     }
 

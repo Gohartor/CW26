@@ -25,7 +25,7 @@ public class Role {
     @Column(name = NAME)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Authority> authorities = new HashSet<>();
 
     public Role() {
