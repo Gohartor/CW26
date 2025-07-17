@@ -6,10 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,7 +32,6 @@ public class User implements UserDetails {
 
     public User() {
     }
-
 
 
     public Long getId() {
@@ -87,6 +84,10 @@ public class User implements UserDetails {
 
     public void setActive(Boolean active) {
         isActive = active;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
     }
 
 }

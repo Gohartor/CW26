@@ -1,13 +1,11 @@
 package ir.maktab.contacts.controller;
 
 
-
+import ir.maktab.contacts.dto.MyUserDetails;
 import ir.maktab.contacts.dto.NewContactDTO;
 import ir.maktab.contacts.dto.UpdateContactDTO;
 import ir.maktab.contacts.entity.Contact;
-import ir.maktab.contacts.entity.User;
 import ir.maktab.contacts.service.ContactService;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -29,6 +27,7 @@ public class ContactController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('SUPERADMIN')")
 //    @ResponseBody
     public ResponseEntity<Contact> addContact(@RequestBody NewContactDTO contact) {
         System.out.println(contact);
@@ -37,6 +36,7 @@ public class ContactController {
 
 
     @PutMapping("/update")
+    @PreAuthorize("hasAnyRole('SUPERADMIN','MODERATOR')")
     public ResponseEntity<Contact> editContact(@RequestBody UpdateContactDTO contact) {
         return ResponseEntity.ok(contactService.editContact(contact));
     }
@@ -55,7 +55,7 @@ public class ContactController {
 
     @GetMapping("/show-all-contatcs")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<Contact>> showAllContacts(@AuthenticationPrincipal User user) {
+    public ResponseEntity<List<Contact>> showAllContacts(@AuthenticationPrincipal MyUserDetails user) {
         return ResponseEntity.ok(contactService.findAll());
     }
 
@@ -64,7 +64,6 @@ public class ContactController {
     public ResponseEntity<Contact> showContact(@PathVariable("id") Long id) {
         return ResponseEntity.ok(contactService.findById(id));
     }
-
 
 
 //    @GetMapping("/{id}")
