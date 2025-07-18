@@ -51,6 +51,7 @@ public class WebConfigSecurity {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index.html", "/v3/api-docs/**", "/swagger-ui/**", "/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/users/register").permitAll()
+                        .requestMatchers(HttpMethod.PUT ,"/api/role/**").hasRole("SUPERADMIN")
                         .requestMatchers(HttpMethod.GET, "/contact-app/api/contact/show-all-contatcs").permitAll()
                         .anyRequest().authenticated()
                 )

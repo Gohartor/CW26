@@ -35,35 +35,35 @@ public class Config implements CommandLineRunner {
             User user1 = new User();
             user1.setUserName("user1");
             user1.setPassword(passwordEncoder.encode("password1"));
-            user1.addRole(roleRepository.findByName("SENIORADMIN"));
+            user1.addRole(roleRepository.findByName("SENIORADMIN").get());
             user1.setActive(true);
             userRepository.save(user1);
 
             User user2 = new User();
             user2.setUserName("user2");
             user2.setPassword(passwordEncoder.encode("password1"));
-            user2.addRole(roleRepository.findByName("ADMIN"));
+            user2.addRole(roleRepository.findByName("ADMIN").get());
             user2.setActive(true);
             userRepository.save(user2);
 
             User user3 = new User();
             user3.setUserName("user3");
             user3.setPassword(passwordEncoder.encode("password1"));
-            user3.addRole(roleRepository.findByName("MODERATOR"));
+            user3.addRole(roleRepository.findByName("MODERATOR").get());
             user3.setActive(true);
             userRepository.save(user3);
 
             User user4 = new User();
             user4.setUserName("user4");
             user4.setPassword(passwordEncoder.encode("password1"));
-            user4.addRole(roleRepository.findByName("AUTHOR"));
+            user4.addRole(roleRepository.findByName("AUTHOR").get());
             user4.setActive(true);
             userRepository.save(user4);
 
             User user5 = new User();
             user5.setUserName("user5");
             user5.setPassword(passwordEncoder.encode("password1"));
-            user5.addRole(roleRepository.findByName("SUPERADMIN"));
+            user5.addRole(roleRepository.findByName("SUPERADMIN").get());
             user5.setActive(true);
             userRepository.save(user5);
 
