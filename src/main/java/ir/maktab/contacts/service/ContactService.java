@@ -2,6 +2,7 @@ package ir.maktab.contacts.service;
 
 
 
+import ir.maktab.contacts.aop.LogContactAction;
 import ir.maktab.contacts.dto.NewContactDTO;
 import ir.maktab.contacts.dto.UpdateContactDTO;
 import ir.maktab.contacts.entity.Contact;
@@ -24,6 +25,7 @@ public class ContactService {
     }
 
 
+    @LogContactAction(action = "add")
    public Contact addContact(NewContactDTO contact){
         Contact newContact = new Contact();
         newContact.setName(contact.getName());
@@ -32,6 +34,7 @@ public class ContactService {
     }
 
 
+    @LogContactAction(action = "edit")
     public Contact editContact(UpdateContactDTO contact){
         Optional<Contact> byId = contactRepository.findById(contact.getId());
         if (byId.isPresent()) {
@@ -43,6 +46,7 @@ public class ContactService {
         throw new RuntimeException();
     }
 
+    @LogContactAction(action = "delete")
     public void deleteById(Long id){
         contactRepository.deleteById(id);
     }

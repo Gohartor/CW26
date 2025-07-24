@@ -1,6 +1,7 @@
 package ir.maktab.contacts.controller;
 
-import ir.maktab.contacts.config.JwtUtil;
+
+import ir.maktab.contacts.config.CustomJwtUtil;
 import ir.maktab.contacts.entity.User;
 import ir.maktab.contacts.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AuthController {
     @Autowired
     PasswordEncoder encoder;
     @Autowired
-    JwtUtil jwtUtils;
+    CustomJwtUtil jwtUtils;
 
     @PostMapping("/signin")
     public String authenticateUser(@RequestBody User user) {

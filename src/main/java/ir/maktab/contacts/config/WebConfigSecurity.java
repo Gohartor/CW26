@@ -2,6 +2,7 @@ package ir.maktab.contacts.config;
 
 
 import ir.maktab.contacts.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -23,17 +24,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class WebConfigSecurity {
 
-    @Autowired
-    UserService userDetailsService;
-    @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
+    private final UserService userDetailsService;
+    private final AuthEntryPointJwt unauthorizedHandler;
+    private final CustomJwtUtil jwtUtil;
+
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
     }
+
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration
