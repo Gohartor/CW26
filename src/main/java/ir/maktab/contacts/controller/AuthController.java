@@ -47,8 +47,8 @@ public class AuthController {
         // Create new user's account
         User newUser = new User();
         newUser.setUserName(user.getUsername());
-
         newUser.setPassword(encoder.encode(user.getPassword()));
+        newUser.setActive(true);
 
         userRepository.save(newUser);
         return "User registered successfully!";

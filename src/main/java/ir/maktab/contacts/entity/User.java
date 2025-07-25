@@ -25,7 +25,7 @@ public class User implements UserDetails {
 
     private String password;
 
-    private Boolean isActive;
+    private Boolean isActive = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
