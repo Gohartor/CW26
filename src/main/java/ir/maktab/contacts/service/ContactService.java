@@ -33,6 +33,14 @@ public class ContactService {
      return contactRepository.save(newContact);
     }
 
+    @LogContactAction(action = "addOrEdit")
+    public Contact addOrEdit(NewContactDTO contact) {
+        Contact newContact = new Contact();
+        newContact.setName(contact.getName());
+        newContact.setNumber(contact.getNumber());
+        return contactRepository.save(newContact);
+    }
+
 
     @LogContactAction(action = "edit")
     public Contact editContact(UpdateContactDTO contact){

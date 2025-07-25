@@ -41,7 +41,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public String registerUser(@RequestBody User user) {
-        if (userRepository.existsByUsername(user.getUsername())) {
+        if (userRepository.existsByUserName(user.getUsername())) {
             return "Error: Username is already taken!";
         }
         // Create new user's account

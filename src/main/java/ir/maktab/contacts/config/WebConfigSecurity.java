@@ -24,13 +24,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@RequiredArgsConstructor
 public class WebConfigSecurity {
 
-    private final UserService userDetailsService;
-    private final AuthEntryPointJwt unauthorizedHandler;
-    private final CustomJwtUtil jwtUtil;
-
+    @Autowired
+    private AuthEntryPointJwt unauthorizedHandler;
+    
+    @Autowired
+    private CustomJwtUtil jwtUtil;
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -47,17 +47,6 @@ public class WebConfigSecurity {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-//        return new PasswordEncoder() {
-//            @Override
-//            public String encode(CharSequence rawPassword) {
-//                return rawPassword.toString();
-//            }
-//
-//            @Override
-//            public boolean matches(CharSequence rawPassword, String encodedPassword) {
-//                return rawPassword.toString().equals(encodedPassword);
-//            }
-//        };
     }
 
     @Bean
@@ -66,7 +55,6 @@ public class WebConfigSecurity {
         return new HttpRequestsCustomizer() {
         };
     }
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -82,12 +70,12 @@ public class WebConfigSecurity {
                         .requestMatchers("/", "/index.html", "/v3/api-docs/**", "/swagger-ui/**", "/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/users/register").permitAll()
                         .requestMatchers(HttpMethod.PUT ,"/api/role/**").hasRole("SUPERADMIN")
-                        .requestMatchers(HttpMethod.GET, "/contact-app/api/contact/show-all-contatcs").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/contact/show-all-contatcs").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/contact/by-param").hasRole("SUPERADMIN")
                         .anyRequest().authenticated()
                 );
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
 }

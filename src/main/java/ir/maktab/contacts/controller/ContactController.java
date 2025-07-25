@@ -34,6 +34,12 @@ public class ContactController {
         return ResponseEntity.ok(contactService.addContact(contact));
     }
 
+    @PostMapping("/by-param")
+    @PreAuthorize("hasRole('SUPERADMIN')")
+    public ResponseEntity<Contact> addOrEdit(@RequestBody NewContactDTO contact) {
+        System.out.println(contact);
+        return ResponseEntity.ok(contactService.addOrEdit(contact));
+    }
 
     @PutMapping("/update")
     @PreAuthorize("hasAnyRole('SUPERADMIN','MODERATOR')")

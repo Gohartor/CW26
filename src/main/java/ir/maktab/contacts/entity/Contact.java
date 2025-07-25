@@ -13,7 +13,21 @@ public class Contact {
     @ManyToOne
     private User user;
 
+    // Default constructor required by JPA
     public Contact() {
+    }
+
+    // Constructor with name and number
+    public Contact(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    // Constructor with all fields
+    public Contact(String name, String number, User user) {
+        this.name = name;
+        this.number = number;
+        this.user = user;
     }
 
     public Long getId() {
@@ -40,9 +54,12 @@ public class Contact {
         this.number = number;
     }
 
-    public Contact(String name, String number) {
-        this.name = name;
-        this.number = number;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
